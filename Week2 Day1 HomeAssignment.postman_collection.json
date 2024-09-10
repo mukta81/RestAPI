@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "e7795d19-4529-481a-9765-d51e5ced5130",
+		"name": "Week2 Day1 HomeAssignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30050655",
+		"_collection_link": "https://planetary-resonance-780183.postman.co/workspace/Rest_API_Session~05ac3a18-408b-487d-8cd1-b337029eaad7/collection/30050655-e7795d19-4529-481a-9765-d51e5ced5130?action=share&source=collection_link&creator=30050655"
+	},
+	"item": [
+		{
+			"name": "Chaining ALL TYPE request BEARER TOKEN",
+			"item": [
+				{
+					"name": "POST Change_Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var resp = pm.response.json();\r",
+									"pm.collectionVariables.set(\"setSys_IDVal\", resp.result.sys_id);\r",
+									"console.log(\"Request added for sys_id:\"+resp.result.sys_id )"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"urgency\": \"2\",\r\n    \"active\": \"true\",\r\n    \"close_notes\": \"Close Notes By Mukta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev282303.service-now.com/api/now/table/:tableName",
+							"protocol": "https",
+							"host": [
+								"dev282303",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								":tableName"
+							],
+							"variable": [
+								{
+									"key": "tableName",
+									"value": "change_request"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Change_Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request Retreived using SYS_ID\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resp = pm.response.json();\r",
+									"\r",
+									"if (resp.result)\r",
+									"{\r",
+									"console.log(\"Request retrieved for sys_id:\"+resp.result.sys_id )\r",
+									"console.log(resp.result.urgency);\r",
+									"console.log(resp.result.active);\r",
+									"console.log(resp.result.close_notes);\r",
+									"}\r",
+									"else\r",
+									"console.log(\"no response with this sys_id\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dev282303.service-now.com/api/now/table/:tableName/:sys_id",
+							"protocol": "https",
+							"host": [
+								"dev282303",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								":tableName",
+								":sys_id"
+							],
+							"variable": [
+								{
+									"key": "tableName",
+									"value": "change_request"
+								},
+								{
+									"key": "sys_id",
+									"value": "{{setSys_IDVal}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Change_Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resp = pm.response.json();\r",
+									"if(resp.result)\r",
+									"console.log(\"Request updated for sys_id:\"+resp.result.sys_id )\r",
+									"else\r",
+									"console.log(\"no rows to update\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"urgency\": \"3\",\r\n    \"close_notes\": \"Updated by Mukta\",\r\n    \"comments_and_work_notes\": \"Comments Added now\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev282303.service-now.com/api/now/table/:tableName/:sys_id",
+							"protocol": "https",
+							"host": [
+								"dev282303",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								":tableName",
+								":sys_id"
+							],
+							"variable": [
+								{
+									"key": "tableName",
+									"value": "change_request"
+								},
+								{
+									"key": "sys_id",
+									"value": "{{setSys_IDVal}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Change_Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    if(pm.response.code===404){\r",
+									"        console.log(\"No Records found to be deleted\")\r",
+									"    }\r",
+									"    else if(pm.response.code!==204){\r",
+									"        console.log(\"Unexpected Status Code\")\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dev282303.service-now.com/api/now/table/:tableName/:sys_id",
+							"protocol": "https",
+							"host": [
+								"dev282303",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								":tableName",
+								":sys_id"
+							],
+							"variable": [
+								{
+									"key": "tableName",
+									"value": "change_request"
+								},
+								{
+									"key": "sys_id",
+									"value": "{{setSys_IDVal}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "9hHG4IMQZPX31YeVpm-Ax2AlwLqhNcpRj6jyqJtw52zJZbKX59dS8fWvVBsjdfVsdMTUFhgHxWmyLaq2oIuuMw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "setSys_IDVal",
+			"value": ""
+		}
+	]
+}

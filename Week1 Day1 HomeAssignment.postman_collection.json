@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "72effd17-d04d-40bb-831d-565526ed33d0",
+		"name": "Week1 Day1 HomeAssignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30050655",
+		"_collection_link": "https://planetary-resonance-780183.postman.co/workspace/Rest_API_Session~05ac3a18-408b-487d-8cd1-b337029eaad7/collection/30050655-72effd17-d04d-40bb-831d-565526ed33d0?action=share&source=collection_link&creator=30050655"
+	},
+	"item": [
+		{
+			"name": "Retrieve All Change Requests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev282303.service-now.com/api/now/table/change_request",
+					"protocol": "https",
+					"host": [
+						"dev282303",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "Nrk80CWWxz*/",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "setSys_IDVal",
+			"value": ""
+		}
+	]
+}
