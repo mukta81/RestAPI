@@ -118,7 +118,7 @@
 		"basic": [
 			{
 				"key": "password",
-				"value": "Nrk80CWWxz*/",
+				"value": "{{password}}",
 				"type": "string"
 			},
 			{
